@@ -14,13 +14,6 @@ gulp.task('browser-sync', function() {
     });
 });
 
-// Gulp-autoprefixer
-// gulp.task('autoprefixer', function () {
-//     gulp.src('app/css/assets/*.css')
-        
-//         .pipe(gulp.dest('app/css'))
-// });
-
 // concat js
 
 gulp.task('scripts', function() {
@@ -32,7 +25,11 @@ gulp.task('scripts', function() {
 // concat css
 
 gulp.task('concat-css', function () {
-  return gulp.src('app/css/assets/*.css')
+  return gulp.src([
+        'app/css/reset.css',
+        'app/css/components/*.css',
+        'app/css/assets/*.css'
+    ])
     .pipe(concatCss("all.css"))
     .pipe(autoprefixer({
             browsers: ['last 2 versions'],
@@ -47,7 +44,7 @@ gulp.task('watch', ['browser-sync', 'scripts', 'concat-css'], function() {
 	gulp.watch('app/*.html', browserSync.reload);
 	gulp.watch('app/css/**/*.css', browserSync.reload);
 	gulp.watch('app/js/**/*.js', browserSync.reload);
-	gulp.watch('app/css/assets/*.css', ['concat-css']);
+	gulp.watch('app/css/**/*.css', ['concat-css']);
 });
 
 gulp.task('default', ['watch']);

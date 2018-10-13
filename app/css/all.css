@@ -1,10 +1,20 @@
+body,
+html {
+  margin: 0;
+}
+acide {
+  color: red;
+}
 footer {
-  padding: 50px;
-  background-color: #555;
+  padding: 100px;
+  background-color: blue;
 }
 header {
-  padding: 30px;
-  background-color: red;
+  padding: 50px;
+  background-color: yellow;
+}
+
+.test {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
