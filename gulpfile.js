@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
+var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
 
 // Static server
 gulp.task('browser-sync', function() {
@@ -11,6 +13,13 @@ gulp.task('browser-sync', function() {
         }
     });
 });
+
+// Gulp-autoprefixer
+// gulp.task('autoprefixer', function () {
+//     gulp.src('app/css/assets/*.css')
+        
+//         .pipe(gulp.dest('app/css'))
+// });
 
 // concat js
 
@@ -25,6 +34,10 @@ gulp.task('scripts', function() {
 gulp.task('concat-css', function () {
   return gulp.src('app/css/assets/*.css')
     .pipe(concatCss("all.css"))
+    .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
     .pipe(gulp.dest('app/css/'));
 });
 
